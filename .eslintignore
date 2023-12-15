@@ -1,3 +1,5 @@
 node_modules/
 dist/
-vite.config.ts
+vitest.config.e2e.ts
+vitest.config.ts
+*.spec.ts
