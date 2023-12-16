@@ -11,19 +11,19 @@
     "baseUrl": "./",
     "incremental": true,
     "skipLibCheck": true,
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-    },
     "strict": true,
     "strictNullChecks": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "types": [
       "vitest/globals"
-    ],
+    ]
   }
 }

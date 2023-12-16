@@ -7,7 +7,7 @@ import { AnswerAttachmentList } from '../../enterprise/entities/answer-attachmen
 import { AnswersRepository } from '../repositories/answers-repository'
 
 interface AnswerQuestionUseCaseRequest {
-  instructorId: string
+  authorId: string
   questionId: string
   content: string
   attachmentsIds: string[]
@@ -25,7 +25,7 @@ export class AnswerQuestionUseCase {
   constructor(private readonly answersRepository: AnswersRepository) {}
 
   public async execute({
-    instructorId,
+    authorId: instructorId,
     questionId,
     content,
     attachmentsIds,

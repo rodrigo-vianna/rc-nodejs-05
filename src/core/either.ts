@@ -1,19 +1,27 @@
 // Error
 export class Left<L, R> {
-  constructor(public readonly value: L) {}
+  readonly value: L
 
-  isLeft(): this is Left<L, R> {
-    return true
+  constructor(value: L) {
+    this.value = value
   }
 
   isRight(): this is Right<L, R> {
     return false
   }
+
+  isLeft(): this is Left<L, R> {
+    return true
+  }
 }
 
 // Success
 export class Right<L, R> {
-  constructor(public readonly value: R) {}
+  readonly value: R
+
+  constructor(value: R) {
+    this.value = value
+  }
 
   isRight(): this is Right<L, R> {
     return true

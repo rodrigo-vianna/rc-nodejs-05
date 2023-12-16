@@ -8,21 +8,21 @@ let sut: AnswerQuestionUseCase;
 
 describe("AnswerQuestionUseCase", () => {
 
-	beforeEach(() => {
-		inMemoryAnswerAttachmentsRepository = new InMemoryAnswerAttachmentsRepository()
-		inMemoryAnswersRepository = new InMemoryAnswersRepository(inMemoryAnswerAttachmentsRepository)
-		sut = new AnswerQuestionUseCase(inMemoryAnswersRepository)
-	})
+  beforeEach(() => {
+    inMemoryAnswerAttachmentsRepository = new InMemoryAnswerAttachmentsRepository()
+    inMemoryAnswersRepository = new InMemoryAnswersRepository(inMemoryAnswerAttachmentsRepository)
+    sut = new AnswerQuestionUseCase(inMemoryAnswersRepository)
+  })
 
-	it("should answer a question", async () => {
-		const result = await sut.execute({
-			questionId: "2",
-			instructorId: "1",
-			content: "Answer content",
-			attachmentsIds: []
-		})
+  it("should answer a question", async () => {
+    const result = await sut.execute({
+      questionId: "2",
+      authorId: "1",
+      content: "Answer content",
+      attachmentsIds: []
+    })
 
-		expect(result.isRight()).toBeTruthy()
-		expect(inMemoryAnswersRepository.items[0].id).toEqual(result.isRight() && result.value.answer.id)
-	})
+    expect(result.isRight()).toBeTruthy()
+    expect(inMemoryAnswersRepository.items[0].id).toEqual(result.isRight() && result.value.answer.id)
+  })
 })
