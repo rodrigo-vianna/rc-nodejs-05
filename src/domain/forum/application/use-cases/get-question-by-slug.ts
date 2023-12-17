@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { Either, left, right } from '../../../../core/either'
-import { Question } from '../../enterprise/entities/question'
+import { QuestionDetails } from '../../enterprise/entities/value-objects/question-details'
 import { QuestionsRepository } from '../repositories/questions-repository'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
@@ -10,7 +10,7 @@ interface GetQuestionBySlugUseCaseRequest {
 
 type GetQuestionBySlugUseCaseResponse = Either<
   ResourceNotFoundError,
-  { question: Question }
+  { question: QuestionDetails }
 >
 
 @Injectable()
@@ -20,7 +20,7 @@ export class GetQuestionBySlugUseCase {
   public async execute({
     slug,
   }: GetQuestionBySlugUseCaseRequest): Promise<GetQuestionBySlugUseCaseResponse> {
-    const question = await this.questionsRepository.findBySlug(slug)
+    const question = await this.questionsRepository.findDetailsBySlug(slug)
     if (!question) return left(new ResourceNotFoundError())
     return right({ question })
   }

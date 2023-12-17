@@ -14,6 +14,7 @@ import { z } from 'zod'
 
 const editAnswerBodySchema = z.object({
   content: z.string(),
+  attachments: z.array(z.string().uuid()).default([]),
 })
 
 const bodyValidationPipe = new ZodValidationPipe(editAnswerBodySchema)
@@ -22,7 +23,7 @@ type EditAnswerBodySchema = z.infer<typeof editAnswerBodySchema>
 
 @Controller('/answers/:id')
 export class EditAnswerController {
-  constructor(private editAnswer: EditAnswerUseCase) {}
+  constructor(private readonly editAnswer: EditAnswerUseCase) {}
 
   @Put()
   @HttpCode(204)
@@ -31,14 +32,14 @@ export class EditAnswerController {
     @CurrentUser() user: UserPayload,
     @Param('id') answerId: string,
   ) {
-    const { content } = body
+    const { content, attachments } = body
     const userId = user.sub
 
     const result = await this.editAnswer.execute({
       content,
       answerId,
       authorId: userId,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
     })
 
     if (result.isLeft()) {

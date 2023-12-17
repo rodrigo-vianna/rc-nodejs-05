@@ -29,7 +29,7 @@ export function makeQuestion(
 
 @Injectable()
 export class QuestionFactory {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async makePrismaQuestion(
     data: Partial<QuestionProps> = {},

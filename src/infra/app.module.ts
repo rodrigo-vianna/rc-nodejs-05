@@ -6,6 +6,7 @@ import { DatabaseModule } from './database/database.module'
 import { envSchema } from './env/env'
 import { EnvModule } from './env/env.module'
 import { HttpModule } from './http/http.module'
+import { StorageModule } from './storage/storage.module'
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { HttpModule } from './http/http.module'
       isGlobal: true,
       validate: (env) => envSchema.parse(env),
     }),
+    StorageModule,
     EnvModule,
     HttpModule,
     DatabaseModule,

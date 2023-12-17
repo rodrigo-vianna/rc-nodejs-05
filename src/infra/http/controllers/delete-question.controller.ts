@@ -11,7 +11,7 @@ import {
 
 @Controller('/questions/:id')
 export class DeleteQuestionController {
-  constructor(private deleteQuestion: DeleteQuestionUseCase) {}
+  constructor(private readonly deleteQuestion: DeleteQuestionUseCase) {}
 
   @Delete()
   @HttpCode(204)

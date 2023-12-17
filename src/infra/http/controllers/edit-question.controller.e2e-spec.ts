@@ -7,6 +7,8 @@ import { Test } from '@nestjs/testing'
 import request from 'supertest'
 import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
+import { AttachmentFactory } from '../../../../test/factories/make-attachment'
+import { QuestionAttachmentFactory } from '../../../../test/factories/make-question-attachments'
 
 describe('Edit question (E2E)', () => {
   let app: INestApplication
@@ -18,7 +20,12 @@ describe('Edit question (E2E)', () => {
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
       imports: [AppModule, DatabaseModule],
-      providers: [StudentFactory, QuestionFactory],
+      providers: [
+        StudentFactory,
+        QuestionFactory,
+        AttachmentFactory,
+        QuestionAttachmentFactory,
+      ],
     }).compile()
 
     app = moduleRef.createNestApplication()

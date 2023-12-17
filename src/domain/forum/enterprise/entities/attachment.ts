@@ -3,7 +3,7 @@ import { UniqueEntityID } from '../../../../core/entities/unique-entity-id'
 
 export interface AttachmentProps {
   title: string
-  link: string
+  url: string
 }
 
 export class Attachment extends AggregateRoot<AttachmentProps> {
@@ -23,5 +23,9 @@ export class Attachment extends AggregateRoot<AttachmentProps> {
 
   set title(value: string) {
     this.props.title = value
+  }
+
+  get url(): string {
+    return this.props.url
   }
 }

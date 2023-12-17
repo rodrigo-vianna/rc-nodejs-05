@@ -6,7 +6,7 @@ import { PrismaService } from '../prisma.service'
 
 @Injectable()
 export class PrismaStudentsRepository implements StudentsRepository {
-  constructor(private prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) {}
 
   async findByEmail(email: string): Promise<Student | null> {
     const student = await this.prisma.user.findUnique({
